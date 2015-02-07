@@ -1,0 +1,9 @@
+Februaruy 6th
+
+I've spent most of this week doing research on the best ways to go about creating a rogue-like.
+I've found numerous tutorials and guides, and with them, I created an extremely basic prototype game with movement mechanics.
+It’s just an empty black box with a white @ symbol that moves around to the players commands, but it’s a start.
+However, after doing this, I'm beginning to have second thoughts about creating the game in java.
+I think I most likely will continue using it, but just in case I change my mind, I'm going to begin looking into python next week.
+I have found extensive guides online for creating rogue-likes in both languages, so whichever one I choose, I should be able to get help.
+As I said, I will plan on continuing in Java, in which case I think I’ll abandon the current lbjsci library used to make this “game”, and instead I’ll switch to ascii, a more commonly used library.
