@@ -1,0 +1,10 @@
+February 13
+
+This week was, again, mostly spent researching.
+I've now fully decided on what tools I want to use to make my game.
+For the language, I've abandoned my idea to use Python, and am instead going to keep on using java.
+As for the libraries, I've abandoned both of the libraries I had planned on using before (lbjsci and ascii).
+Instead, I've decided to use the seemingly more streamlined 2D Slick library, one that was specifically made for creating two dimensional games in java.
+Slick has an advantage over lbjsci and ascii in that it fully supports the implementation of custom sprites and graphics, a feature that the other two don't support nearly as readily.
+As a brief introduction to using Slick, I've begun following a tutorial I've found online.
+My completed version of the first step in this tutorial (loading an empty window using the Slick library) will be uploaded as this weeks status update.
