@@ -9,4 +9,6 @@ comment3.params=container\ delta
 comment3.target=void\ update(org.newdawn.slick.GameContainer,\ int)
 comment4.params=container\ g
 comment4.target=void\ render(org.newdawn.slick.GameContainer,\ org.newdawn.slick.Graphics)
-numComments=5
+comment5.params=x\ y
+comment5.target=boolean\ isBlocked(float,\ float)
+numComments=6
