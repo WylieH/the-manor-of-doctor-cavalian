@@ -1,0 +1,9 @@
+February 20
+
+I spent this week finishing the 2D Slick tutorial that I started last week. 
+It’s the same kind of "game" as the prototype, in that it just features basic, 4 directional movements responsive to the arrow keys and collision detection.
+However, this version of the game uses a placeholder image instead of the simple @ symbol used previously.
+Unfortunately, I'm having difficulties with the classpath, and so although all the code is correct (at least according to what the tutoiral says), the game can't be run without further work.
+After the tutorial is finished, however, I’ll be able to build upon the final product to make the actual game.
+The major things that still need to be added are health/attack mechanics, enemies, randomly generated rooms, art assets, and a few items that can be picked up, in that order of importance.
+These basic features would make the game playable, and if they’re added and time still remains, I will add different room types, boss type enemies, NPCs that can be spoken to, and some semblance of a story, again in that order of importance.
