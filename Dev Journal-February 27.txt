@@ -1,0 +1,11 @@
+February 27
+
+Unfortunately, this week has been largely unproductive.
+I've spent all of my work time trying to fix the class-path error, but I still can't figure out how.
+I've researched the problem, and so far all I can find is that it is definitely a class path error.
+Initially I had just assumed that it came up with an error screen because I didn't put in a map, but now that I have put one in I know that it's beyond that.
+I'm unable to proceed with the other stages of the project until this error is resolved, since I can't load up the game to test mechanics.
+However, I should still be able to make the deadline for the March 6th deliverable.
+Technically all I promised was a basic prototype of a rogue-like game that could be used for testing game mechanics, and that's pretty much what I have.
+That is, if I can get what I have to work.
+Until then, however, I'm stuck trying to figure out how to fix the class-path.
