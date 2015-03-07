@@ -1,0 +1,22 @@
+March 6
+
+I haven't managed to come quite as far along with my project as I had hoped.
+The problems with making the LWJGL library work the way that it's supposed to proved to be a significant setback.
+However, with some help from Mr Schreiber, I believe that that error has been resolved.
+Unfortunately, I am now faced with two more problems.
+First off, although there don't seem to be any problems in the actual code itself, the game still won't run.
+When the main method is called, it loads up a lengthy error message that doesn't point to any specific lines of code.
+After looking through the message, I believe that this error was caused by the fact that I'm using the wrong type of image as a game map.
+I had previously thought I could just use a black box as a placeholder map, but it seems to require a specific type of image created with the TiledMap program.
+Attempting to fix the classpath errors took up too much time, and so now I don't have enough time to become acquainted with the TiledMap program before the March 6 deliverable due date.
+However, I said that my deliverable would be a basic, skeleton program meant for making and testing mechanics and features.
+What I have been able to make technically fits that description; it's a bare-bones prototype that I'm going to build the game off of.
+It just has a few bugs that need to be ironed out in order to get it to fully work.
+
+Unfortunately, my second problem will likely prove more frustrating than the first.
+When I call the program's main method on one of the school computers, it gives an error message saying that the game can't be loaded; one completely different then the one it gives on my home computer.
+A quick Google search says that the most likely explanation is graphic driver incompatibility.
+This could mean that I won't be able to do any game testing at school.
+
+However, other than that, I believe that once I start using the TiledMap program, things should go smoothly.
+If that is all that it takes to fix the new error, then I should be back on schedule by next week.
