@@ -1,13 +1,15 @@
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Animation;
-import org.newdawn.slick.AppGameContainer;
-import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.BasicGame;
+import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.tiled.TiledMap;
 import org.newdawn.slick.Input;
 
+//libraries into userlib
+//move libraries into repository
 public class TwoDSlickPrototype extends BasicGame{
     private TiledMap placeholder;
     private Animation sprite, up, down, left, right;
@@ -20,10 +22,10 @@ public class TwoDSlickPrototype extends BasicGame{
     }
     public static void main(String[] args)
     {
-
+        AppGameContainer app;
         try
         {
-            AppGameContainer app = new AppGameContainer(new TwoDSlickPrototype());
+            app = new AppGameContainer(new TwoDSlickPrototype());
             app.setDisplayMode(500, 400, false);
             app.start();
         }
