@@ -1,0 +1,15 @@
+March 13
+
+It works!
+It finally works!
+After using the TiledMap program to create a basic black and white placeholder map, and after replacing the black placeholder image with it, the program finally runs without errors!
+I had originally put off learning TiledMap because I thought I could just use a placeholder JPEG image until I was ready to make the room generator.
+However, now that I know that the game doesn't run without it, I've finally used it and I finally got it to work.
+The game is running fine now, but there is one small (but probably easily fixable) problem.
+When the player image hits the edge of the screen, the game crashes instead of stopping it from moving.
+All I have to do to get around that though would just be to add in actual walls and doors just before the edge.
+But still, the game finally opens, which means that I can finally begin inputting and testing the actual mechanics.
+Unfortunately, I still haven't figured out how to get around the fact that the game doesn't run on the school computers (still not sure why).
+Because of that, I'm restricted to doing any testing at home.
+I can still write code at school, but it will be significantly more inconvenient since I'd have to a few hours before actually testing it.
+But even despite that, the fact that the game runs at all means that things are finally progressing again!
