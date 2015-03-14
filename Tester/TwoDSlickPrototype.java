@@ -26,7 +26,7 @@ public class TwoDSlickPrototype extends BasicGame{
         try
         {
             app = new AppGameContainer(new TwoDSlickPrototype());
-            app.setDisplayMode(320, 320, false);
+            app.setDisplayMode(1000, 1000, false);
             app.start();
         }
         catch (SlickException e)
@@ -40,8 +40,8 @@ public class TwoDSlickPrototype extends BasicGame{
         Image [] movementDown = {new Image("Schreiber.png")};
         Image [] movementLeft = {new Image("Schreiber.png")};
         Image [] movementRight = {new Image("Schreiber.png")};
-        int[] duration = {300, 300};
-        placeholder = new TiledMap("blackbox.jpeg", "data");
+        int duration = 300;
+        placeholder = new TiledMap("Placeholder2.tmx", "");
         up = new Animation(movementUp, duration, false);
         down = new Animation(movementDown, duration, false);
         left = new Animation(movementLeft, duration, false);
