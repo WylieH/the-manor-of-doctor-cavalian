@@ -1,0 +1,12 @@
+March 20
+
+This week I've mostly just cleaned up the Tester, adding in the properties to the map to make collision detection work.
+I also made the map a little bit bigger so that it fills the window open.
+I'm not sure how I can make the game toggle between full screen and window mode, so I'll have to look into that later.
+However, right now that's fairly low down on my list of priorities.
+I've also begun experimenting with a basic attack for the player, but mostly I was working on getting collision detection to work.
+I can't test if the damage system works because I have yet to implement enemies, but that's what I'll spend the week after next week doing.
+As for next week, since it's Spring Break, I'm going to spend it making the game's actual art assets.
+For right now I'm only planning on doing what's really necessary for the game to be somewhat interesting (a few enemy types, a few room types, etc).
+Anything more will only be made if I have time.
+The art assets are scheduled as my next deliverable, so I need to make sure that they get done soon.
