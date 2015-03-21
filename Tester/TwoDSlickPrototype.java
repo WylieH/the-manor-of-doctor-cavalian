@@ -8,13 +8,12 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.tiled.TiledMap;
 import org.newdawn.slick.Input;
 
-//libraries into userlib
-//move libraries into repository
 public class TwoDSlickPrototype extends BasicGame{
     private TiledMap placeholder;
-    private Animation sprite, up, down, left, right;
-    private float x = 34f, y = 34f;
+    private Animation sprite, up, down, left, right, shoot;
+    private float x = 100f, y = 100f;
     private boolean[][] blocked;
+    //dimensions of the sprite
     private static final int SIZE = 34;
     public TwoDSlickPrototype()
     {
@@ -36,16 +35,20 @@ public class TwoDSlickPrototype extends BasicGame{
     }
     public void init(GameContainer container) throws SlickException
     {
+        //Player Sprite
         Image [] movementUp = {new Image("Schreiber.png")};
         Image [] movementDown = {new Image("Schreiber.png")};
         Image [] movementLeft = {new Image("Schreiber.png")};
         Image [] movementRight = {new Image("Schreiber.png")};
         int duration = 300;
-        placeholder = new TiledMap("Placeholder2.tmx", "");
+        placeholder = new TiledMap("Placeholder3.tmx", "");
         up = new Animation(movementUp, duration, false);
         down = new Animation(movementDown, duration, false);
         left = new Animation(movementLeft, duration, false);
         right = new Animation(movementRight, duration, false);
+        //player attack sprite
+        Image [] attack = {new Image("fireball.png")};
+        shoot = new Animation(attack, duration, false);
         //original orientation
         sprite = right;
         //build a collision map
@@ -56,7 +59,7 @@ public class TwoDSlickPrototype extends BasicGame{
             {
                 int tileID = placeholder.getTileId(xAxis, yAxis, 0);
                 String value = placeholder.getTileProperty(tileID, "blocked", "false");
-                if ("true".equals(value))
+                if (value.equals("true"))
                 {
                     blocked[xAxis][yAxis] = true;
                 }
@@ -79,7 +82,7 @@ public class TwoDSlickPrototype extends BasicGame{
         else if (input.isKeyDown(Input.KEY_DOWN))
         {
             sprite = down;
-            if (!isBlocked(x, y + SIZE + delta * 0.1f))
+            if (!isBlocked(x, y + 344 + delta * 0.1f))
             {
                 sprite.update(delta);
                 y += delta * 0.1f;
@@ -97,10 +100,37 @@ public class TwoDSlickPrototype extends BasicGame{
         else if (input.isKeyDown(Input.KEY_RIGHT))
         {
             sprite = right;
-            if (!isBlocked(x + SIZE + delta * 0.1f, y))
+            if (!isBlocked(x + 263 + delta * 0.1f, y))
             {
                 sprite.update(delta);
                 x += delta * 0.1f;
+            }
+        }
+    }
+    public void playerAttack(GameContainer container, int delta) throws SlickException
+    {
+        Input input = container.getInput();
+        if (input.isKeyDown(Input.KEY_SPACE))
+        {
+            if (sprite == up)
+            {
+                shoot.update(delta);
+                y+= delta * 0.1f;
+            }
+            else if (sprite == down)
+            {
+                shoot.update(delta);
+                y-= delta * 0.1f;
+            }
+            else if (sprite == left)
+            {
+                shoot.update(delta);
+                x-= delta * .01f;
+            }
+            else if (sprite == right)
+            {
+                shoot.update(delta);
+                x+= delta * .01f;
             }
         }
     }
