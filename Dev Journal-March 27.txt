@@ -1,0 +1,9 @@
+March 27
+
+As I planned previously, this week I've mostly been working on the game's art assets.
+Given the fact that I'm not a professional artist nor do I have the fund to hire one, I don't expect the game to look incredible.
+Then again, that's another upside to making a rogue-like; you can give it really simplistic graphics and just call it stylized.
+So far I've just been drawing everything out and then scanning it into the computer after it's done.
+By the next deliverable due date I'll have tile sets for at least three different room variants, images for the player and at least three monster types for all four directions, possibly a few frames of movement animations, attack animations, and at least one boss.
+When it's all done I'll just put all the images in a file and put the file in the game file, and start implementing them as they're required.
+For this next week I'll still just be finishing up the art and maybe continuing on the combat mechanics, if time permits.
