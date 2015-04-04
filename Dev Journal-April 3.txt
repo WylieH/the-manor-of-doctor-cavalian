@@ -1,0 +1,18 @@
+April 3rd
+
+As the April third deliverable, I've finished the sprites for what I believe to be a bare minimum number of enemies that need to be present in the game.
+I have four directions for the player sprite, a generic zombie enemy, three bosses for the three levels, and three unique minion enemies for the different levels.
+When I have some spare time I'll create more, but this was what I was able to do in the time I gave myself.
+Honestly though, I'm somewhat disappointed with how this first batch turned out.
+I drew and colored them just on paper, and later scanned them onto the computer.
+However, I was borrowing the image scanner, so I wasn't able to see how they would turn out until I had to have the end.'
+I had originally hoped that the colors wouldn't look so obviously done in marker, but they really do.
+When I get some more spare time, I'm going to recolor the images in Adobe Illustrator, and if they still don't look quite right, I think I'll just try and redesign them from the ground up with a different, even more cartoony art-style.
+After that, I'll try and make time to create a few more enemies to add variety, but for now, this is what I have.
+Another side project is to add animations.
+I certainly won't be able to give every sprite detailed movement and attack animations, and honestly, if I tried to that alone would probably take longer than the actual coding.
+But I think I would be able to add just a few more frames, to make them look less lifeless.
+
+Game assets aside, I also began work on the room generator this week.
+I wasn't able to make any of the actual randomizes, since that required the custom maps, but I was able to replace the declaration of the placeholder map in the main class with one from the Generator method of the Room class.
+Next week I'll be focusing more on getting the room generator working.
