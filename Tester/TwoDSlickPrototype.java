@@ -9,6 +9,7 @@ import org.newdawn.slick.tiled.TiledMap;
 import org.newdawn.slick.Input;
 
 public class TwoDSlickPrototype extends BasicGame{
+    private Room placeholderRoom;
     private TiledMap placeholder;
     private Animation sprite, up, down, left, right, shoot;
     private float x = 100f, y = 100f;
@@ -41,7 +42,11 @@ public class TwoDSlickPrototype extends BasicGame{
         Image [] movementLeft = {new Image("Schreiber.png")};
         Image [] movementRight = {new Image("Schreiber.png")};
         int duration = 300;
-        placeholder = new TiledMap("Placeholder3.tmx", "");
+        
+        //placeholder = new TiledMap("Placeholder3.tmx", "");
+        placeholderRoom = Room.generateRoom(1, "basic");
+        placeholder = placeholderRoom.getMap();
+        
         up = new Animation(movementUp, duration, false);
         down = new Animation(movementDown, duration, false);
         left = new Animation(movementLeft, duration, false);
