@@ -1,0 +1,13 @@
+April 10
+
+This week I've been working on the game's room generator.
+So far I've been able to make the main method use the room generator to create the starting room instead of doing it itself.
+I've also built the framework to use to build the full randomization/generator, however I haven't gotten that working yet.
+I think the room generation is working, but the problem is that I'm not quite sure how to spawn the player in the newly generated room.
+Right now the game just crashes when the player hits one of the designated door tiles.
+Fixing that will be my priority for this week, but if I finish early I'll being working on the enemies.
+If I have room generation, enemies, and combat working, I think that will be enough to consider the game in a working state.
+After those top priorities are finished, I'll add in some items.
+
+I've also been working on the asset redesigns, since like I said, I'm really not happy with how they turned out.
+However, that's fairly low on the list of necessities, so I've just been doing it in my spare time.
