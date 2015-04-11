@@ -11,9 +11,14 @@ import org.newdawn.slick.Input;
 public class TwoDSlickPrototype extends BasicGame{
     private Room placeholderRoom;
     private TiledMap placeholder;
-    private Animation sprite, up, down, left, right, shoot;
-    private float x = 100f, y = 100f;
+    public static Animation sprite, up, down, left, right, shoot;
+    public float x = 100f, y = 100f;
     private boolean[][] blocked;
+    private boolean[][] passable;
+    
+    int level;
+    int rXCoord;
+    int rYCoord;
     //dimensions of the sprite
     private static final int SIZE = 34;
     public TwoDSlickPrototype()
@@ -37,6 +42,13 @@ public class TwoDSlickPrototype extends BasicGame{
     public void init(GameContainer container) throws SlickException
     {
         //Player Sprite
+        int x = 0;
+        int y = 0;
+        
+        level = 1;
+        rXCoord = 0;
+        rYCoord = 0;
+        
         Image [] movementUp = {new Image("Schreiber.png")};
         Image [] movementDown = {new Image("Schreiber.png")};
         Image [] movementLeft = {new Image("Schreiber.png")};
@@ -44,7 +56,7 @@ public class TwoDSlickPrototype extends BasicGame{
         int duration = 300;
         
         //placeholder = new TiledMap("Placeholder3.tmx", "");
-        placeholderRoom = Room.generateRoom(1, "basic");
+        placeholderRoom = Room.generateRoom(level, x, y);
         placeholder = placeholderRoom.getMap();
         
         up = new Animation(movementUp, duration, false);
@@ -62,17 +74,24 @@ public class TwoDSlickPrototype extends BasicGame{
         {
             for(int yAxis = 0; yAxis < placeholder.getHeight(); yAxis = yAxis + 1)
             {
+                //Add/pull Tiled Property door
                 int tileID = placeholder.getTileId(xAxis, yAxis, 0);
                 String value = placeholder.getTileProperty(tileID, "blocked", "false");
+                String valueDoor = placeholder.getTileProperty(tileID, "door", "false");
                 if (value.equals("true"))
                 {
                     blocked[xAxis][yAxis] = true;
+                }
+                if (valueDoor.equals("true"))
+                {
+                    passable[xAxis][yAxis] = true;
                 }
             }
         }
     }
     public void update(GameContainer container, int delta) throws SlickException
     {
+        //Genereate room if contact with Door
         Input input = container.getInput();
         if (input.isKeyDown(Input.KEY_UP))
         {
@@ -82,6 +101,10 @@ public class TwoDSlickPrototype extends BasicGame{
                 sprite.update(delta);
                 //the lower the delta the slower the sprite will animate
                 y -= delta * 0.1f;
+            }
+            else if(isDoor(x, y - delta * .1f))
+            {
+                placeholderRoom = Room.generateRoom(level, rXCoord + 1, rYCoord + 1);
             }
         }
         else if (input.isKeyDown(Input.KEY_DOWN))
@@ -149,5 +172,15 @@ public class TwoDSlickPrototype extends BasicGame{
         int xBlock = (int) x / SIZE;
         int yBlock = (int)y / SIZE;
         return blocked[xBlock][yBlock];
+    }
+    private boolean isDoor(float x, float y)
+    {
+        int xBlock = (int) x / SIZE;
+        int yBlock = (int)y / SIZE;
+        return passable[xBlock][yBlock];
+    }
+    public static Animation getSprite()
+    {
+        return sprite;
     }
 }

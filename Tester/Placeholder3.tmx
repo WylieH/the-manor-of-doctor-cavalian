@@ -5856,9 +5856,17 @@
    </properties>
   </tile>
  </tileset>
+ <tileset firstgid="1271" name="Brown" tilewidth="32" tileheight="32">
+  <image source="../../../_original.jpg" width="5760" height="3840"/>
+  <tile id="0">
+   <properties>
+    <property name="Door" value="true"/>
+   </properties>
+  </tile>
+ </tileset>
  <layer name="Tile Layer 1" width="31" height="31">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+thYGBIB+IeOuJ0HOyBsJuJjjgdyd6BtLtn1O5Ru0ftppndA1m2jNo9suwe6Lpk1O5Ru0ftHrV7pNktOoztpjempd3E9AkBp8R4LQQPAAA=
+   H4sIAAAAAAAAC+thYGBIB+IeOuJ0HOyBsJuJjjgdyd6BtLtn1O5Ru0ftppndA1m2jGS7f7CMPLvTR+0ecXaP1HbLqN2jdg8Wu0WHsd30xrS0m5g+IQCEO78qBA8AAA==
   </data>
  </layer>
  <layer name="Tile Layer 2" width="31" height="31">
@@ -5866,7 +5874,7 @@
    <property name="blocked" value="true"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3NwQkAAAgDsW7b/TdwCxHMwb3TJH38Zmw2m81ms9lsNpt9zf72APYKDQ8EDwAA
+   H4sIAAAAAAAAC0tnYGBIH2L4OwsmJtcseoJRu0ftHrV71G5a2w0qD+kJkMvfUbtHlt30TudpDCPT7sFStozaPWr3qN3D225icRoUU7M/NhAYAJ+q7YAEDwAA
   </data>
  </layer>
 </map>
