@@ -9,16 +9,21 @@ import org.newdawn.slick.tiled.TiledMap;
 import org.newdawn.slick.Input;
 
 public class TwoDSlickPrototype extends BasicGame{
-    private Room placeholderRoom;
+
     private TiledMap placeholder;
     public static Animation sprite, up, down, left, right, shoot;
     public float x = 100f, y = 100f;
     private boolean[][] blocked;
     private boolean[][] passable;
     
+    
     int level;
     int rXCoord;
     int rYCoord;
+    
+    int RXC;
+    int RYC;
+    //private Room placeholderRoom = Room.generateRoom(level, RXC, RYC);
     //dimensions of the sprite
     private static final int SIZE = 34;
     public TwoDSlickPrototype()
@@ -55,9 +60,9 @@ public class TwoDSlickPrototype extends BasicGame{
         Image [] movementRight = {new Image("Schreiber.png")};
         int duration = 300;
         
-        //placeholder = new TiledMap("Placeholder3.tmx", "");
-        placeholderRoom = Room.generateRoom(level, x, y);
-        placeholder = placeholderRoom.getMap();
+        placeholder = new TiledMap("Placeholder3.tmx", "");
+        //placeholderRoom = Room.generateRoom(level, x, y);
+        //placeholder = placeholderRoom.getMap();
         
         up = new Animation(movementUp, duration, false);
         down = new Animation(movementDown, duration, false);
@@ -102,10 +107,10 @@ public class TwoDSlickPrototype extends BasicGame{
                 //the lower the delta the slower the sprite will animate
                 y -= delta * 0.1f;
             }
-            else if(isDoor(x, y - delta * .1f))
-            {
-                placeholderRoom = Room.generateRoom(level, rXCoord + 1, rYCoord + 1);
-            }
+            //else if(isDoor(x, y - delta * .1f))
+            //{
+                //placeholderRoom = Room.generateRoom(level, rXCoord + 1, rYCoord + 1);
+            //}
         }
         else if (input.isKeyDown(Input.KEY_DOWN))
         {

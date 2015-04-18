@@ -1,8 +1,12 @@
 #BlueJ class context
-comment0.params=room\ enemies\ x\ y
-comment0.target=Room(org.newdawn.slick.tiled.TiledMap,\ NPC[],\ int,\ int)
-comment1.params=level\ xCoord\ yCoord
-comment1.target=Room\ generateRoom(int,\ int,\ int)
+comment0.params=roomType\ level
+comment0.target=Room(java.lang.String,\ int)
+comment1.params=
+comment1.target=void\ generateLevel()
 comment2.params=
 comment2.target=org.newdawn.slick.tiled.TiledMap\ getMap()
-numComments=3
+comment3.params=level
+comment3.target=void\ check(Room[][])
+comment4.params=from\ fromX\ fromY
+comment4.target=void\ connect(Room,\ int,\ int)
+numComments=5
