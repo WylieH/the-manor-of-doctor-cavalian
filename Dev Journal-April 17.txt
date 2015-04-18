@@ -1,0 +1,15 @@
+April 17
+
+This week I've continued work on the room generator.
+I think I have all of the framework done, now I just need to fill in all the details to make the fill and check algorithms foolproof.
+I had originally wanted to make the procedurally generated, but I've come across a few problems that I wasn't able to solve, so I've scrapped that idea and gone with the simpler method of randomly pre-generating the levels.
+As such, I've removed the room generator, replaced it with a level generator, and moved everything that was in the room generator into the constructor.
+I've also added Check and Connect methods that I can call in the generator, just to clean it up a bit.
+Right now, the generator initializes some of the random number values, declares the 2D Room array for the level using those random values as dimensions, goes through every variable in the 2D array and has a 50-50 chance of creating a room there, then goes back and checks the level twice to make sure all rooms connect to something, then creates the boss room at the end, then checks everything one more time.
+Like I said, I still need to add in all the little details to make things run nicely, like ensuring correct door orientation and corridor directions, so I'll be focusing on those next week.
+
+In order to make the next deliverable, I've decided to consider the fully working level generator and player movement systems as a basic, working version of the final game.
+The level generator has taken a bit longer than anticipated, so I don't think I'll get to make NPCs by the due date.
+I had previously been keeping a lot of the methods in the main game class, but more and more I've been embracing the idea of cannibalizing the class and dividing everything up into Room, Player, and NPC classes.
+I think Room is almost done, but I can't quite test it until I make the Player class.
+I haven't finalized exactly what should go in that class, but I decided that I needed a PlayerSpawn method when I was having trouble with moving the player into new rooms last week, so O just decided to give the player it's own entire class.
