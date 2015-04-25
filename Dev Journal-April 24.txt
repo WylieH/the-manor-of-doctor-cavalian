@@ -1,0 +1,10 @@
+April 24th
+
+I've been continuing on the room generator this week.
+After deciding that my previous method of level generation would be too needlessly complex and too prone to random error, I've moved on to a different strategy.
+Now I've decided to remove the fill and check methods and create a makePath method, which creates a 2D Integer array with different integers representing different rooms.
+The level generator calls this method and then creates a 2D room array based on the values of the integer array.
+Unfortunately, I haven't been able to get this to work.
+I originally tried to make it so that it created a room in every row at a random location and then filled in the path to connect them all, but again that's become overly complex and I'm having difficulty fixing the errors.
+So instead, over the weekend I'm going to remake it so that it creates a room at a random spot in a row, then creates the path leading to the next room, then creates the next room at the end of the path.
+I just feel like it will be easier to make the rooms conform to the path than making the path conform to the rooms.
