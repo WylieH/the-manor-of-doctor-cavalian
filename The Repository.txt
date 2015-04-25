@@ -1,0 +1,100 @@
+makePath
+--------
+ //7 is the starting room
+        //1 is the basic, generic, enemy room
+        //2 is the connector turning right
+        //3 is the connector turning left
+        //4 is the connector vertically
+        //5 is the connector horizontally
+        //6 is the boss room
+        Random rnd3 = new Random();
+        int[][] path = new int[rows][cols];
+        int firstRoom = rnd3.nextInt(cols);
+        
+        int location;
+        int locHoriz = 0;
+        int locVert = 0;
+        //fills everything with zeroes
+        for (int fillRow = 0; fillRow < rows; fillRow = fillRow + 1)
+        {
+            for (int fillCol = 0; fillCol < cols; fillCol = fillCol + 1)
+            {
+                path[fillRow][fillCol] = 0;
+            }
+        }
+        path[0][firstRoom] = 7;
+        //randomly makes one element of each row into a room
+        for (int assignPath = 1; assignPath < rows; assignPath = assignPath + 1)
+        {
+            int pathRoom = rnd3.nextInt(cols);
+            path[assignPath][pathRoom] = 1;
+        }
+        //creates connections between the rooms
+        for (int checkPath = 0; checkPath < rows - 1; checkPath = checkPath + 1)
+        {
+            for (int roomLoc = 0; roomLoc < cols; roomLoc = roomLoc + 1)
+            {
+                //checks if a room is an actual room, and if so sets its location as an int
+                if (path[checkPath][roomLoc] == 1 ||path[checkPath][roomLoc] == 7 ||path[checkPath][roomLoc] == 6)
+                {
+                    location = roomLoc;
+                    
+                    //checks to see the location of the next lowest room
+                    for (int roomLocLow = 0; roomLocLow < cols; roomLocLow = roomLocLow +1)
+                    {
+                        if (path[checkPath + 1][roomLocLow] == 1 || path[checkPath + 1][roomLocLow] == 6)
+                        {
+                            locHoriz = roomLocLow;
+                            break;
+                        }
+                    }
+                    //checks to see if there is a room directly below
+                    for (int roomLocVert = 0; roomLocVert < rows - 1; roomLocVert = roomLocVert + 1)
+                    {
+                        if (path[roomLocVert][location] == 1 || path[roomLocVert][location] == 6)
+                        {
+                            locVert = roomLocVert;
+                            break;
+                        }
+                    }
+                    //checks to see which room is closer
+                    if (Math.abs(location - locHoriz) >= Math.abs(locVert - checkPath))
+                    {
+                        for (int corridorFill = checkPath + 1; corridorFill < locVert; corridorFill = corridorFill + 1)
+                        {
+                            path[corridorFill][location] = 4;
+                        }
+                    }
+                    else if (Math.abs(location - locHoriz) < Math.abs(locVert - checkPath))
+                    {
+                        //determines which direction the corridor should go
+                        if (location > locHoriz)
+                        {
+                            path[checkPath + 1][location] = 3;
+                            for (int corridorFill = locHoriz + 1; corridorFill < location; corridorFill = corridorFill + 1)
+                            {
+                                path[checkPath + 1][corridorFill] = 5;
+                            }
+                        }
+                        //need rest of corridor fills
+                        if (location < locHoriz)
+                        {
+                            path[checkPath + 1][location] = 2;
+                            for (int corridorFill = location + 1; corridorFill < locHoriz; corridorFill = corridorFill + 1)
+                            {
+                                path[checkPath + 1][corridorFill] = 5;
+                            }
+                        }
+                    }
+                    
+                }
+            }
+        }
+        for (int bossCheck = 0; bossCheck < cols; bossCheck = bossCheck + 1)
+        {
+            if (path[rows - 1][bossCheck] == 1)
+            {
+                path[rows - 1][bossCheck] = 6;
+            }
+        }
+        return path;
