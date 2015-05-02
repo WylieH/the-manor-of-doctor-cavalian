@@ -22,67 +22,162 @@ public class Room{
     public float x;
     public float y;
     
-    Random rnd = new Random();
     int doors;
-    int levelX;
-    int levelY;
+
     int roomFill;
     
     int levelCheck;
-    
-    public Room[][] level;
+    public static int startingRoomLocation = 0;
+    boolean entered;
     //Talk to Schreiber about statics
     private static Animation getSprite = TwoDSlickPrototype.getSprite();
-    public Room(String roomType, int level) throws SlickException
+    public Room(String roomType, int level) throws org.newdawn.slick.SlickException
     {
         //move generateRoom into the constructor
-       type = roomType;
-        
-       Random rnd2 = new Random();
-       int CRE = rnd2.nextInt(6);
-       int RD = rnd2.nextInt(100);
-       int doors = rnd2.nextInt(4);
-       if (RD < 5)
-       {
-           playerRoom = new TiledMap("Placeholder3.tmx", "");
-           type = "treasure";
-       }
-       else if (RD < 90 && RD > 5)
-       {
-           playerRoom = new TiledMap("Placeholder3.tmx", "");
-           type = "standard";
-       }
-       else if (RD >90 && RD < 100)
-       {
-           playerRoom = new TiledMap("Placeholder3.tmx", "");
-       }
+        if (roomType.equals("startingRoom") && level == 1)
+        {
+            playerRoom = new TiledMap("StartingRoom1.tmx", "");
+        }
+        else if (roomType.equals("bossEntranceUp") && level == 1)
+        {
+            playerRoom = new TiledMap("BossEntranceUp.tmx", "");
+        }
+        else if (roomType.equals("bossEntranceRight") && level == 1)
+        {
+            playerRoom = new TiledMap("BossEntranceRight.tmx", "");
+        }
+        else if (roomType.equals("bossEntranceLeft") && level == 1)
+        {
+            playerRoom = new TiledMap("BossEntranceLeft.tmx", "");
+        }
+        else if (roomType.equals("basicUpDown") && level == 1)
+        {
+            playerRoom = new TiledMap("BasicUpDown.tmx", "");
+        }
+        else if (roomType.equals("basicUpLeft") && level == 1)
+        {
+            playerRoom = new TiledMap("BasicUpLeft.tmx", "");
+        }
+        else if (roomType.equals("basicUpRight") && level == 1)
+        {
+            playerRoom = new TiledMap("BasicUpRight.tmx", "");
+        }
+        else if (roomType.equals("basicLeftDown") && level == 1)
+        {
+            playerRoom = new TiledMap("BasicLeftDown.tmx", "");
+        }
+        else if (roomType.equals("basicRightDown") && level == 1)
+        {
+            playerRoom = new TiledMap("BasicRightDown.tmx", "");
+        }
+        else if (roomType.equals("connectorVertical") && level == 1)
+        {
+            playerRoom = new TiledMap("ConnectorVertical.tmx", "");
+        }
+        else if (roomType.equals("connectHorizontal") && level == 1)
+        {
+            playerRoom = new TiledMap("ConnectorHorizontal.tmx", "");
+        }
+        else if (roomType.equals("connectRight") && level == 1)
+        {
+            playerRoom = new TiledMap("ConnectorRight.tmx", "");
+        }
+        else if (roomType.equals("connectLeft") && level == 1)
+        {
+            playerRoom = new TiledMap("ConnectorLeft.tmx", "");
+        }
+        entered = false;
     }
-    public void generateLevel() throws SlickException
+    public static int getFirstRoom()
+    {
+        return startingRoomLocation;
+    }
+    public static Room[][] generateLevel(int levelCheck) throws org.newdawn.slick.SlickException
     {
         //create a 2D room array of dimensions 4-10 up and down
         //Randomly fill a random amount of the rooms with randomly pre-generated rooms
         //Check to see that every room has at least one other room touching it
         //    -if not, add room "corridor" between them
         //Select one room to become the boss room.
-        levelCheck = 1;
+        Random rnd = new Random();
+        int levelX;
+        int levelY;
+        levelX = rnd.nextInt(5) + 3;
+        levelY = rnd.nextInt(10) + 8;
+        int[][] path = Room.makePath(levelY, levelX);
+        Room[][] level = new Room[levelY][levelX];
         
-        levelX = rnd.nextInt(25) + 10;
-        levelY = rnd.nextInt(30) + 15;
-        
-        int bossCol = rnd.nextInt(levelX);
-        
-        level = new Room[levelY][levelX];
-        for (int fillRow = 0; fillRow < levelY; fillRow = fillRow + 1)
+
+        for (int row = 0; row < levelY; row = row + 1)
         {
-            for (int fillCol = 0; fillCol < levelX; fillCol = fillCol + 1)
+            for (int col = 0; col < levelX; col = col + 1)
             {
-                roomFill = rnd.nextInt(10);
-                if(roomFill > 5)
+                if (path[row][col] == 7)
                 {
-                    level[fillRow][fillCol] = new Room("random", levelCheck);
+                    level[row][col] = new Room("startingRoom", levelCheck);
+                    startingRoomLocation = col;
+                }
+                else if (path[row][col] == 6)
+                {
+                    if (row > 0 && path[row - 1][col] != 0)
+                    {
+                        level[row][col] = new Room("bossEntranceUp", levelCheck);
+                    }
+                    else if (col > 0 && path[row][col - 1] != 0)
+                    {
+                        level[row][col] = new Room("bossEntranceLeft", levelCheck);
+                    }
+                    else if (path[row][col + 1] != 0)
+                    {
+                        level[row][col] = new Room("bossEntranceRight", levelCheck);
+                    }
+                }
+                else if (path[row][col] == 1)
+                {
+                    //starts up
+                    if (row > 0 && path[row - 1][col] != 0 && path[row + 1][col] != 0)
+                    {
+                        level[row][col] = new Room("basicUpDown", levelCheck);
+                    }
+                    else if (row > 0 && path[row - 1][col] != 0 && path[row][col - 1] != 0)
+                    {
+                        level[row][col] = new Room("basicUpLeft", levelCheck);
+                    }
+                    else if (row > 0 && path[row - 1][col] != 0 && path[row][col + 1] != 0)
+                    {
+                        level[row][col] = new Room("basicUpRight", levelCheck);
+                    }
+                    //starts left
+                    else if (col > 0 &&path[row][col - 1] != 0 && path[row + 1][col] != 0)
+                    {
+                        level[row][col] = new Room("basicLeftDown", levelCheck);
+                    }
+                    //starts right
+                    else if (path[row][col + 1] != 0 && path[row + 1][col] != 0)
+                    {
+                        level[row][col] = new Room("basicRightDown", levelCheck);
+                    }
+                }
+                else if (path[row][col] == 4)
+                {
+                    level[row][col] = new Room("connectorVertical", levelCheck);
+                }
+                else if (path[row][col] == 5)
+                {
+                    level[row][col] = new Room("connectHorizontal", levelCheck);
+                }
+                else if (path[row][col] == 2)
+                {
+                    level[row][col] = new Room("connectRight", levelCheck);
+                }
+                else if (path[row][col] == 3)
+                {
+                    level[row][col] = new Room("connectLeft", levelCheck);
                 }
             }
         }
+        
+        return level;
     }
     public static int[][] makePath(int rows, int cols)
     {
@@ -114,70 +209,55 @@ public class Room{
             }
         }
         path[0][firstRoom] = 7;
+        int column = 0;
+        boolean room = false;
         //randomly makes one element of each row into a room
-        for (int assignPath = 1; assignPath < rows; assignPath = assignPath + 1)
+        for (int currentRow = 0; currentRow < rows - 1; currentRow = currentRow + 1)
         {
-            int pathRoom = rnd3.nextInt(cols);
-            int createRoom = rnd3.nextInt(3);
-            if (createRoom >= 1)
+            //finds a column with an integer that isn't zero in it
+            for (int currentCol = 0; currentCol < cols; currentCol = currentCol + 1)
             {
-                path[assignPath][pathRoom] = 1;
-            }
-        }
-        //creates the boss room at the end
-        for (int bossCheck = 0; bossCheck < cols; bossCheck = bossCheck + 1)
-        {
-            int boss = rnd3.nextInt(cols);
-            path[rows - 1][boss] = 6;
-            break;
-        }
-        //finds a from room
-        for (int roomRow = 0; roomRow < rows - 1; roomRow = roomRow + 1)
-        {
-            for (int roomCol = 0; roomCol < cols; roomCol = roomCol + 1)
-            {
-                if (path[roomRow][roomCol] == 1 || path[roomRow][roomCol] == 7)
+                if (path[currentRow][currentCol] == 1 || path[currentRow][currentCol] == 7)
+                //path[currentRow][currentCol] != 0 && path[currentRow][currentCol] != 5 && path[currentRow][currentCol] != 3 && path[currentRow][currentCol] != 2
                 {
-                int roomFromColumn = roomCol;
-                int roomFromRow = roomRow;
-                //checks for the next level with a room
-                for (int checkPath = roomRow; checkPath < rows - 1; checkPath = checkPath + 1)
-                {
-                    for (int roomLoc = 0; roomLoc < cols; roomLoc = roomLoc + 1)
-                    {
-                        if (path[checkPath][roomLoc] == 1 || path[checkPath][roomLoc] == 6)
-                        {
-                            int roomToColumn = roomLoc;
-                            int roomToRow = checkPath;
-                            //creates a corridor down to the level of the next room
-                            for (int connectVert = roomFromRow + 1; connectVert < roomToRow - 1; connectVert = connectVert + 1)
-                            {
-                                path[connectVert][roomFromColumn] = 4;
-                                
-                            }
-                            if (roomToColumn > roomFromColumn)
-                            {
-                                path[roomToRow][roomFromColumn] = 3;
-                                for (int connectHor = roomFromColumn + 1; connectHor < roomToColumn; connectHor = connectHor + 1)
-                                {
-                                    path[roomToRow][connectHor] = 5;
-                                }
-                            }
-                            else if (roomToColumn < roomFromColumn)
-                            {
-                                path[roomToRow][roomFromColumn] = 2;
-                                for (int connectHor = roomToColumn + 1; connectHor < roomFromColumn; connectHor = connectHor + 1)
-                                {
-                                    path[roomToRow][connectHor] = 5;
-                                }
-                            }
-                        }
-                    }
+                    column = currentCol;
+                    room = true;
                 }
             }
+            int ifMakeRoom = rnd3.nextInt(3);
+            int whereMakeRoom = rnd3.nextInt(cols);
+            if (ifMakeRoom < 1 && room)
+            {
+                path[currentRow + 1][column] = 4;
+            }
+            else if (ifMakeRoom >= 1 && room)
+            {
+                if (whereMakeRoom < column)
+                {
+                    path[currentRow + 1][column] = 3;
+                    for (int connectRoom = column - 1; connectRoom > whereMakeRoom; connectRoom = connectRoom - 1)
+                    {
+                        path[currentRow + 1][connectRoom] = 5;
+                    }
+                }
+                else if (whereMakeRoom > column)
+                {
+                    path[currentRow + 1][column] = 2;
+                    for (int connectRoom = column + 1; connectRoom < whereMakeRoom; connectRoom = connectRoom + 1)
+                    {
+                        path[currentRow + 1][connectRoom] = 5;
+                    }
+                }
+                path[currentRow + 1][whereMakeRoom] = 1;
             }
         }
-        
+        for (int boss = 0; boss < cols; boss = boss + 1)
+        {
+            if (path[rows - 1][boss] == 1 || path[rows - 1][boss] == 4)
+            {
+                path[rows - 1][boss] = 6;
+            }
+        }
         return path;
     }
     public TiledMap getMap()
