@@ -1,0 +1,10 @@
+May 1
+
+For the May First deliverable, I've finished the game's level generator and integrated it into the main class, replacing the previous declaration with a call of the methods inside the generator class.
+I ended up using the third method that I described in last week's entry to create the path, and that seems to have worked.
+However, I'm still having trouble with moving the player between rooms.
+I've been doing some research on the subject, but so far I haven't found anything extremely useful.
+I've taken a couple different approaches to the problem, but neither have worked.
+My first attempt ended with the game crashing whenever it used the collision detection, and the current version is just treating the door blocks as regular wall blocks and stopping the player from proceeding instead of moving them into the next room, as intended.
+I think I do have a few ideas as to how to fix this, but they all involve close examination of all the methods involved in movement and the original tutorial I used to make the prototype.
+Until I can fix this, however, the inter-room transportation is my priority.
