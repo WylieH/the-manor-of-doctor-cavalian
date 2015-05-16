@@ -1,0 +1,10 @@
+May 15th
+
+I actually think I'm just about done with the game.
+Over the past couple of weeks, I've gotten the finished the level generator and made it possible to walk in between rooms.
+I've also figured out how to spawn in enemies upon entering a room.
+However, I'm still having some trouble with getting the NPCs to move around.
+Specifically, I can't figure out how to implement the FPS value into the movement code, so for now, the NPCs are stuck stationary.
+Still, I think the game has progressed fairly well, and after just a couple more days it should be ready to be considered finished.
+Although this will likely be the last entry of the development journal, I'll be spending the weekend just cleaning everything up and making it presentable.
+I've found two programs to help finish making the game's sprites and final maps, so I'll do that on Saturday and then spend Sunday fine tuning everything and continuing to try and get the enemy AI working.
