@@ -10,21 +10,25 @@ import org.newdawn.slick.Input;
 
 //Remake the placeholder maps with the opposite orientation
 
+//If a major error comes up, it could be because you made x and y static
+
+//http://www.aseprite.org/
+//http://pyxeledit.com/features.php
+
 public class TwoDSlickPrototype extends BasicGame{
     private TiledMap currentRoom;
+    public Room playerRoom;
     public static Animation sprite, up, down, left, right, shoot;
-    public float x = 500f, y = 500f;
+    int playerHealth;
+    public static float x = 500f, y = 500f;
     private boolean[][] blocked;
-    private boolean[][] passable;
+    private boolean[][] Door;
     
     int currentRow = 0;
     int currentCol = 0;
     
     Room[][]level;
     
-    int RXC;
-    int RYC;
-    //private Room placeholderRoom = Room.generateRoom(level, RXC, RYC);
     //dimensions of the sprite
     private static final int SIZE = 34;
     public TwoDSlickPrototype()
@@ -50,6 +54,7 @@ public class TwoDSlickPrototype extends BasicGame{
         //Player Sprite
         int x = 0;
         int y = 0;
+        playerHealth = 5;
         
         Image [] movementUp = {new Image("Schreiber.png")};
         Image [] movementDown = {new Image("Schreiber.png")};
@@ -58,10 +63,12 @@ public class TwoDSlickPrototype extends BasicGame{
         int duration = 300;
         
         level = Room.generateLevel(1);
-        Room firstRoom = level[0][Room.getFirstRoom()];
-        currentRoom = firstRoom.getMap();
+        playerRoom = level[0][Room.getFirstRoom()];
+        currentRoom = playerRoom.getMap();
         //currentRoom = new TiledMap("StartingRoom1.tmx", "");
         currentCol = Room.getFirstRoom();
+        currentRow = 0;
+        playerRoom.entered = true;
         //placeholderRoom = Room.generateRoom(level, x, y);
         //placeholder = placeholderRoom.getMap();
         
@@ -74,7 +81,7 @@ public class TwoDSlickPrototype extends BasicGame{
         sprite = right;
         //build a collision map
         blocked = new boolean[currentRoom.getWidth()][currentRoom.getHeight()];
-        passable = new boolean[currentRoom.getWidth()][currentRoom.getHeight()];
+        Door = new boolean[currentRoom.getWidth()][currentRoom.getHeight()];
         for(int xAxis = 0; xAxis < currentRoom.getWidth(); xAxis = xAxis + 1)
         {
             for(int yAxis = 0; yAxis < currentRoom.getHeight(); yAxis = yAxis + 1)
@@ -89,7 +96,7 @@ public class TwoDSlickPrototype extends BasicGame{
                 }
                 if (valueDoor.equals("true"))
                 {
-                    passable[xAxis][yAxis] = true;
+                    Door[xAxis][yAxis] = true;
                 }
             }
         }
@@ -100,25 +107,28 @@ public class TwoDSlickPrototype extends BasicGame{
         if (input.isKeyDown(Input.KEY_UP))
         {
             sprite = up;
-            if(!isBlocked(x, y - delta * 0.1f))
+            if(!isBlocked(x + SIZE, y - delta * 0.1f))
             {
                 sprite.update(delta);
                 //the lower the delta the slower the sprite will animate
-                y -= delta * 0.1f;
-            }
-            //else if (isBlocked(x, y - delta * 0.1f))
-            //{
-                //sprite.update(delta);
-                //y = y;
-            //}
-            else if(isDoor(x, y - delta * .1f))
-            {
-                x = 500f;
-                y = 500f;
-                currentRoom = level[currentRow + 1][currentCol].getMap();
-                currentRow = currentRow + 1;
-                currentRoom.render(0, 0);
-                sprite.draw(500, 500);
+                y -= delta * 0.2f;
+                
+                if(isDoor(x + SIZE, y - delta * .1f))
+                {
+                    sprite.update(delta);
+                    y-= delta * 0.2f;
+                    currentRoom = level[currentRow + 1][currentCol].getMap();
+                    playerRoom = level[currentRow + 1][currentCol];
+                    x = 500f;
+                    y = 500f;
+                    if (playerRoom.entered == false)
+                    {
+                        playerRoom.entered = true;
+                        NPC enemy = new NPC("placeholder");
+                        enemy.enemySprite.draw((int)700f, (int)700f);
+                    }
+                    currentRow = currentRow + 1;
+                }
             }
         }
         else if (input.isKeyDown(Input.KEY_DOWN))
@@ -127,7 +137,21 @@ public class TwoDSlickPrototype extends BasicGame{
             if (!isBlocked(x, y + 344 + delta * 0.1f))
             {
                 sprite.update(delta);
-                y += delta * 0.1f;
+                y += delta * 0.2f;
+                if(isDoor(x, y + 344 + delta * 0.1f))
+                {
+                    sprite.update(delta);
+                    y+= delta * 0.2f;
+                    currentRoom = level[currentRow - 1][currentCol].getMap();
+                    playerRoom = level[currentRow - 1][currentCol];
+                    x = 500f;
+                    y = 500f;
+                    if (playerRoom.entered == false)
+                    {
+                        //playerRoom.enter();
+                    }
+                    currentRow = currentRow - 1;
+                }
             }
         }
         else if (input.isKeyDown(Input.KEY_LEFT))
@@ -136,7 +160,22 @@ public class TwoDSlickPrototype extends BasicGame{
             if (!isBlocked(x - delta * 0.1f, y))
             {
                 sprite.update(delta);
-                x -= delta * 0.1f;
+                x -= delta * 0.2f;
+                if(isDoor(x - delta * 0.1f, y))
+                {
+                    sprite.update(delta);
+                    x -= delta * 0.2f;
+                    currentRoom = level[currentRow][currentCol - 1].getMap();
+                    playerRoom = level[currentRow][currentCol - 1];
+                    x = 500f;
+                    y = 500f;
+                    if (playerRoom.entered == false)
+                    {
+                        //playerRoom.enter();
+                        
+                    }
+                    currentCol = currentCol - 1;
+                }
             }
         }
         else if (input.isKeyDown(Input.KEY_RIGHT))
@@ -145,14 +184,42 @@ public class TwoDSlickPrototype extends BasicGame{
             if (!isBlocked(x + 263 + delta * 0.1f, y))
             {
                 sprite.update(delta);
-                x += delta * 0.1f;
+                x += delta * 0.2f;
+                if(isDoor(x + 263 + delta * 0.1f, y))
+                {
+                    sprite.update(delta);
+                    x += delta * 0.2f;
+                    currentRoom = level[currentRow][currentCol + 1].getMap();
+                    playerRoom = level[currentRow][currentCol + 1];
+                    x = 500f;
+                    y = 500f;
+                    if (playerRoom.entered == false)
+                    {
+                        //playerRoom.enter();
+                    }
+                    currentCol = currentCol + 1;
+                }
             }
         }
+    }
+    public static float getPlayerX()
+    {
+       return x;
+    }
+    public static float getPlayerY()
+    {
+        return y;
     }
     public void render(GameContainer container, Graphics g) throws SlickException
     {
         currentRoom.render(0, 0);
         sprite.draw((int)x, (int)y);
+        if (currentRow > 0)
+        {
+            NPC enemy = new NPC("placeholder");
+            enemy.enemySprite.draw((int)NPC.x, (int)NPC.y);
+            
+        }
     }
     private boolean isBlocked(float x, float y)
     {
@@ -164,10 +231,6 @@ public class TwoDSlickPrototype extends BasicGame{
     {
         int xBlock = (int) x / SIZE;
         int yBlock = (int)y / SIZE;
-        return passable[xBlock][yBlock];
-    }
-    public static Animation getSprite()
-    {
-        return sprite;
+        return Door[xBlock][yBlock];
     }
 }

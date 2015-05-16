@@ -11,32 +11,28 @@ import org.newdawn.slick.Input;
 import java.util.Random;
 
 public class Room{
-    //Add a path generator that returns a boolean 2D array
-    //Path generator creates a jagged, somewhat randomized path leading from starting room, in ary[0], to boss room, in ary[final]
+    //Add a path generator that returns an int 2D array
+    //Path generator creates a randomized path leading from starting room, in ary[0], to boss room, in ary[final]
     //Create some random offshoot rooms from the main path.
     //Use level generator to fiill a Room[][] based on the boolean[][] from pathgenerator
     
     //add boolean "entered" to the room to check if the player has entered already
     public String type;
     public TiledMap playerRoom;
-    public float x;
-    public float y;
-    
-    int doors;
-
-    int roomFill;
     
     int levelCheck;
     public static int startingRoomLocation = 0;
     boolean entered;
+    NPC[] enemies;
     //Talk to Schreiber about statics
-    private static Animation getSprite = TwoDSlickPrototype.getSprite();
     public Room(String roomType, int level) throws org.newdawn.slick.SlickException
     {
+        Random rnd = new Random();
         //move generateRoom into the constructor
         if (roomType.equals("startingRoom") && level == 1)
         {
             playerRoom = new TiledMap("StartingRoom1.tmx", "");
+            enemies = new NPC[0];
         }
         else if (roomType.equals("bossEntranceUp") && level == 1)
         {
@@ -53,40 +49,58 @@ public class Room{
         else if (roomType.equals("basicUpDown") && level == 1)
         {
             playerRoom = new TiledMap("BasicUpDown.tmx", "");
+            enemies = new NPC[rnd.nextInt(4) + 2];
         }
         else if (roomType.equals("basicUpLeft") && level == 1)
         {
             playerRoom = new TiledMap("BasicUpLeft.tmx", "");
+            enemies = new NPC[rnd.nextInt(4) + 2];
         }
         else if (roomType.equals("basicUpRight") && level == 1)
         {
             playerRoom = new TiledMap("BasicUpRight.tmx", "");
+            enemies = new NPC[rnd.nextInt(4) + 2];
         }
         else if (roomType.equals("basicLeftDown") && level == 1)
         {
             playerRoom = new TiledMap("BasicLeftDown.tmx", "");
+            enemies = new NPC[rnd.nextInt(4) + 2];
         }
         else if (roomType.equals("basicRightDown") && level == 1)
         {
             playerRoom = new TiledMap("BasicRightDown.tmx", "");
+            enemies = new NPC[rnd.nextInt(4) + 2];
         }
         else if (roomType.equals("connectorVertical") && level == 1)
         {
             playerRoom = new TiledMap("ConnectorVertical.tmx", "");
+            enemies = new NPC[rnd.nextInt(2) + 1];
         }
         else if (roomType.equals("connectHorizontal") && level == 1)
         {
             playerRoom = new TiledMap("ConnectorHorizontal.tmx", "");
+            enemies = new NPC[rnd.nextInt(2) + 1];
         }
         else if (roomType.equals("connectRight") && level == 1)
         {
             playerRoom = new TiledMap("ConnectorRight.tmx", "");
+            enemies = new NPC[rnd.nextInt(2) + 1];
         }
         else if (roomType.equals("connectLeft") && level == 1)
         {
             playerRoom = new TiledMap("ConnectorLeft.tmx", "");
+            enemies = new NPC[rnd.nextInt(2) + 1];
         }
         entered = false;
+    }
+    //public void enter() throws SlickException
+    //{
+    //    entered = true;
+    //    NPC.render();
+    //}
+    public boolean isEntered()
+    {
+        return entered;
     }
     public static int getFirstRoom()
     {

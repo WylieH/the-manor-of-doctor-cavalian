@@ -12,7 +12,6 @@
   </tile>
   <tile id="1">
    <properties>
-    <property name="Door" value="false"/>
     <property name="blocked" value="true"/>
    </properties>
   </tile>
@@ -5862,21 +5861,15 @@
   <tile id="0">
    <properties>
     <property name="Door" value="true"/>
-    <property name="blocked" value="false"/>
    </properties>
   </tile>
  </tileset>
- <layer name="Tile Layer 1" width="31" height="31">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+thYGBIB+IeOuJ0HOyBsJuJjjgdyd6BtLtn1O5Ru0ftppndA1m2jGS7f7CMPLvTR+0ecXaP1HbLqN2jdg8Wu0WHsd3E4DQSMT6zSLWbFExMnxAAu9jbFQQPAAA=
-  </data>
- </layer>
  <layer name="Tile Layer 2" width="31" height="31">
   <properties>
-   <property name="blocked" value="true"/>
+   <property name="Door" value="true"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3XsQoAIAhFUYm+Vf9/aq2xgkgKHpEvuKtniAJNRMyZtkpe551z0s5WGfPORR7atGnjbA1k938e0k60Q933bKPfd1T7lT+VNm3af9vefWzX7c6HqgLjZTWdBA8AAA==
+   H4sIAAAAAAAAC+3XoRIAIAgEUXT8Vvn/ZLXSREchuGHrvXxdRLqz0dZ5t3Z7ZZfAsLGxsbHvVI2pH9nFuNm2Yoek2NjY2AG2J8+3OtnNaALymj28BA8AAA==
   </data>
  </layer>
 </map>
