@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="32" tileheight="32" nextobjectid="1">
+ <tileset firstgid="1" name="Placeholder" tilewidth="32" tileheight="32">
+  <image source="blackbox.jpeg" width="320" height="320"/>
+ </tileset>
+ <tileset firstgid="101" name="Collision" tilewidth="32" tileheight="32">
+  <image source="../../../white.jpg" width="1278" height="990"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjZGBgYBxGOHWYmZeKhEeCecTYNZjjdqDTC7VxKpl4IN08iumHAWgvDz0=
+  </data>
+ </layer>
+ <objectgroup name="Object Layer 1"/>
+</map>

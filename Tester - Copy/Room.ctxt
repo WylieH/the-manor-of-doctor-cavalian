@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.params=roomType\ level
+comment0.target=Room(java.lang.String,\ int)
+comment1.params=
+comment1.target=boolean\ isEntered()
+comment2.params=
+comment2.target=int\ getFirstRoom()
+comment3.params=levelCheck
+comment3.target=Room[][]\ generateLevel(int)
+comment4.params=rows\ cols
+comment4.target=int[][]\ makePath(int,\ int)
+comment5.params=
+comment5.target=org.newdawn.slick.tiled.TiledMap\ getMap()
+numComments=6

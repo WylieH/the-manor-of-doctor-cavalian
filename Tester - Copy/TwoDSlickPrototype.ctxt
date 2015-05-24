@@ -1,0 +1,22 @@
+#BlueJ class context
+comment0.params=
+comment0.target=TwoDSlickPrototype()
+comment1.params=args
+comment1.target=void\ main(java.lang.String[])
+comment2.params=container
+comment2.target=void\ init(org.newdawn.slick.GameContainer)
+comment3.params=container\ delta
+comment3.target=void\ update(org.newdawn.slick.GameContainer,\ int)
+comment4.params=
+comment4.target=int\ getSpeed()
+comment5.params=
+comment5.target=float\ getPlayerX()
+comment6.params=
+comment6.target=float\ getPlayerY()
+comment7.params=container\ g
+comment7.target=void\ render(org.newdawn.slick.GameContainer,\ org.newdawn.slick.Graphics)
+comment8.params=x\ y
+comment8.target=boolean\ isBlocked(float,\ float)
+comment9.params=x\ y
+comment9.target=boolean\ isDoor(float,\ float)
+numComments=10
