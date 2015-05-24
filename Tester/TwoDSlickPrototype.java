@@ -8,6 +8,9 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.tiled.TiledMap;
 import org.newdawn.slick.Input;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 //Remake the placeholder maps with the opposite orientation
 
 //If a major error comes up, it could be because you made x and y static
@@ -27,6 +30,9 @@ public class TwoDSlickPrototype extends BasicGame{
     int currentRow = 0;
     int currentCol = 0;
     
+    static int speed;
+    NPC enemy;
+
     Room[][]level;
     
     //dimensions of the sprite
@@ -104,6 +110,7 @@ public class TwoDSlickPrototype extends BasicGame{
     public void update(GameContainer container, int delta) throws SlickException
     {
         Input input = container.getInput();
+        speed = delta;
         if (input.isKeyDown(Input.KEY_UP))
         {
             sprite = up;
@@ -121,13 +128,27 @@ public class TwoDSlickPrototype extends BasicGame{
                     playerRoom = level[currentRow + 1][currentCol];
                     x = 500f;
                     y = 500f;
-                    if (playerRoom.entered == false)
-                    {
-                        playerRoom.entered = true;
-                        NPC enemy = new NPC("placeholder");
-                        enemy.enemySprite.draw((int)700f, (int)700f);
-                    }
                     currentRow = currentRow + 1;
+                    blocked = new boolean[currentRoom.getWidth()][currentRoom.getHeight()];
+        Door = new boolean[currentRoom.getWidth()][currentRoom.getHeight()];
+        for(int xAxis = 0; xAxis < currentRoom.getWidth(); xAxis = xAxis + 1)
+        {
+            for(int yAxis = 0; yAxis < currentRoom.getHeight(); yAxis = yAxis + 1)
+            {
+                //Add/pull Tiled Property door
+                int tileID = currentRoom.getTileId(xAxis, yAxis, 0);
+                String value = currentRoom.getTileProperty(tileID, "blocked", "false");
+                String valueDoor = currentRoom.getTileProperty(tileID, "Door", "false");
+                if (value.equals("true"))
+                {
+                    blocked[xAxis][yAxis] = true;
+                }
+                if (valueDoor.equals("true"))
+                {
+                    Door[xAxis][yAxis] = true;
+                }
+            }
+        }
                 }
             }
         }
@@ -151,6 +172,26 @@ public class TwoDSlickPrototype extends BasicGame{
                         //playerRoom.enter();
                     }
                     currentRow = currentRow - 1;
+                    blocked = new boolean[currentRoom.getWidth()][currentRoom.getHeight()];
+        Door = new boolean[currentRoom.getWidth()][currentRoom.getHeight()];
+        for(int xAxis = 0; xAxis < currentRoom.getWidth(); xAxis = xAxis + 1)
+        {
+            for(int yAxis = 0; yAxis < currentRoom.getHeight(); yAxis = yAxis + 1)
+            {
+                //Add/pull Tiled Property door
+                int tileID = currentRoom.getTileId(xAxis, yAxis, 0);
+                String value = currentRoom.getTileProperty(tileID, "blocked", "false");
+                String valueDoor = currentRoom.getTileProperty(tileID, "Door", "false");
+                if (value.equals("true"))
+                {
+                    blocked[xAxis][yAxis] = true;
+                }
+                if (valueDoor.equals("true"))
+                {
+                    Door[xAxis][yAxis] = true;
+                }
+            }
+        }
                 }
             }
         }
@@ -175,6 +216,26 @@ public class TwoDSlickPrototype extends BasicGame{
                         
                     }
                     currentCol = currentCol - 1;
+                    blocked = new boolean[currentRoom.getWidth()][currentRoom.getHeight()];
+        Door = new boolean[currentRoom.getWidth()][currentRoom.getHeight()];
+        for(int xAxis = 0; xAxis < currentRoom.getWidth(); xAxis = xAxis + 1)
+        {
+            for(int yAxis = 0; yAxis < currentRoom.getHeight(); yAxis = yAxis + 1)
+            {
+                //Add/pull Tiled Property door
+                int tileID = currentRoom.getTileId(xAxis, yAxis, 0);
+                String value = currentRoom.getTileProperty(tileID, "blocked", "false");
+                String valueDoor = currentRoom.getTileProperty(tileID, "Door", "false");
+                if (value.equals("true"))
+                {
+                    blocked[xAxis][yAxis] = true;
+                }
+                if (valueDoor.equals("true"))
+                {
+                    Door[xAxis][yAxis] = true;
+                }
+            }
+        }
                 }
             }
         }
@@ -198,13 +259,42 @@ public class TwoDSlickPrototype extends BasicGame{
                         //playerRoom.enter();
                     }
                     currentCol = currentCol + 1;
+                    blocked = new boolean[currentRoom.getWidth()][currentRoom.getHeight()];
+        Door = new boolean[currentRoom.getWidth()][currentRoom.getHeight()];
+        for(int xAxis = 0; xAxis < currentRoom.getWidth(); xAxis = xAxis + 1)
+        {
+            for(int yAxis = 0; yAxis < currentRoom.getHeight(); yAxis = yAxis + 1)
+            {
+                //Add/pull Tiled Property door
+                int tileID = currentRoom.getTileId(xAxis, yAxis, 0);
+                String value = currentRoom.getTileProperty(tileID, "blocked", "false");
+                String valueDoor = currentRoom.getTileProperty(tileID, "Door", "false");
+                if (value.equals("true"))
+                {
+                    blocked[xAxis][yAxis] = true;
+                }
+                if (valueDoor.equals("true"))
+                {
+                    Door[xAxis][yAxis] = true;
                 }
             }
         }
+                }
+            }
+        }
+        
+        //new Timer().scheduleAtFixedRate(new NPCMove(), 1L, 1L);
     }
+        //accidentally put an infinite loop inside of a while loop
+        //created a new timer every time
+    public static int getSpeed()
+    {
+        return speed;
+    }
+    
     public static float getPlayerX()
     {
-       return x;
+        return x;
     }
     public static float getPlayerY()
     {
@@ -216,9 +306,8 @@ public class TwoDSlickPrototype extends BasicGame{
         sprite.draw((int)x, (int)y);
         if (currentRow > 0)
         {
-            NPC enemy = new NPC("placeholder");
-            enemy.enemySprite.draw((int)NPC.x, (int)NPC.y);
-            
+            enemy = new NPC("placeholder");
+            enemy.enemySprite.draw((int)enemy.x, (int)enemy.y);
         }
     }
     private boolean isBlocked(float x, float y)

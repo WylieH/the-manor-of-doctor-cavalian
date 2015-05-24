@@ -5866,15 +5866,7 @@
  </tileset>
  <layer name="Tile Layer 1" width="31" height="31">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+thYGBIB+IeOuJ0HOyBsJuJjjgdyd6BtLtn1O5Ru0ftppndA1m2jGS7f7CMPLvTR+0ecXaP1HbLqN2jdg8Wu0WHsd30xrS0m5g+IQCEO78qBA8AAA==
-  </data>
- </layer>
- <layer name="Tile Layer 2" width="31" height="31">
-  <properties>
-   <property name="blocked" value="true"/>
-  </properties>
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3XOwoAIBBDwSCedb1/Zat2goIWEn9ZeK3TBQwAwgVZLvp+hrbZd5knW7Zsnm0f2fXmlU1knZNNtyF7y7bstE/ZVNmyZb9tz/7HRq349zFKIRmJEwQPAAA=
+   H4sIAAAAAAAAC0tjYGBIIxF/Z8GNSTVrIO1OB2ImOuJ0JHvTBsjutBFmN3Jcj9o9cuweyLQ2EGXLYCjXYOXwqN2jdo/aPfzsTmcY2DbTQJWpo3aP2o2ORYex3fTEtLCb1H4gAAAcFy0EDwAA
   </data>
  </layer>
 </map>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="8" height="8" tilewidth="80" tileheight="80" nextobjectid="1">
+ <tileset firstgid="1" name="tiles" tilewidth="80" tileheight="80">
+  <image source="C:/Users/Wylie/Pictures/MoDC/all tiles.JPG" width="481" height="320"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="8" height="8">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NkYGBgw4G5gZgdiHmAWBANCwGxAFSeCYiZ0TALHeU5gJgTDXNB5XmBmA8H5gdiANd/0UcAAQAA
+  </data>
+ </layer>
+</map>

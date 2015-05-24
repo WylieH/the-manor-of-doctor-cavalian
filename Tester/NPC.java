@@ -9,14 +9,16 @@ import org.newdawn.slick.tiled.TiledMap;
 import org.newdawn.slick.Input;
 
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class NPC{
     int health;
     int attack;
-    public static float x = 900f;
-    public static float y = 900f;
+    public static float x = 100f;
+    public static float y = 700f;
     public static Animation enemySprite;
-
+    Timer movement = new Timer();
     public static int duration = 300;
     public NPC(String name) throws SlickException
     {
@@ -28,39 +30,22 @@ public class NPC{
             //int delta = appgc.setTargetFrameRate(100);
             health = 5;
             attack = 1;
-            x = 100f;
-            y = 700f;
-            while (x < 800)
+            int speed = 30;
+            
+            movement.scheduleAtFixedRate(new NPCMove(), 1000L, 1000L);
+        }
+        }
+    class NPCMove extends TimerTask {
+        public void run()
+        {
+            if (x < 800)
             {
-                
+                enemySprite.update(30);
+                x += 30 * .1f;
             }
         }
     }
-    //public void update(GameContainer container, int delta) throws SlickException
-    //{
-    //    while (x != TwoDSlickPrototype.getPlayerX())
-    //        {
-    //            if (x > TwoDSlickPrototype.getPlayerX())
-    //            {
-    //                x -= delta * .05f;
-     //           }
-       //         else if (x < TwoDSlickPrototype.getPlayerX())
-         //       {
-           //         x += delta * .05f;
-             //   }
-               // while (y != TwoDSlickPrototype.getPlayerY())
-                //{
-                  //  if (y > TwoDSlickPrototype.getPlayerY())
-                    //{
-                      //  y -= delta * .05f;
-                   // }
-              //      else if (y < TwoDSlickPrototype.getPlayerY())
-                //    {
-                  //      y += delta * .05f;
-                    //}
-           //     }
-      //      }
-    //  }
+    
     public static void spawnEnemies(GameContainer container, Graphics g) throws SlickException
     {
         Image[] enemy = {new Image("Enemy.png")};
